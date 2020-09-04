@@ -46,7 +46,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="New Releases"
+                                android:text="Music Genre"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
                             <Button
@@ -67,127 +67,16 @@
                             android:padding="@dimen/spacing_medium"
                             android:visibility="visible">
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/spacing_medium"
-                                android:layout_weight="1"
-                                app:cardCornerRadius="2dp"
-                                app:cardElevation="2dp">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclegenre"
+                                android:clipToPadding="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#f0f0f0">
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
 
-                                    <ImageView
-                                        android:id="@+id/image_1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="180dp"
-                                        android:background="@color/grey_40"
-                                        android:scaleType="centerCrop" />
+                            </androidx.recyclerview.widget.RecyclerView>
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="@dimen/spacing_large">
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Mauris sagittis non elit"
-                                                android:textAppearance="@style/TextAppearance.Medium.Bold"
-                                                android:textColor="@color/grey_90" />
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="Kodaline" />
-
-                                        </LinearLayout>
-
-                                        <ImageButton
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:background="?attr/selectableItemBackgroundBorderless"
-                                            android:tint="@color/grey_40"
-                                            app:srcCompat="@drawable/ic_more_vert" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/spacing_medium"
-                                android:layout_weight="1"
-                                app:cardCornerRadius="2dp"
-                                app:cardElevation="2dp">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:id="@+id/image_2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="180dp"
-                                        android:background="@color/grey_40"
-                                        android:scaleType="centerCrop" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="@dimen/spacing_large">
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Aliquam"
-                                                android:textAppearance="@style/TextAppearance.Medium.Bold"
-                                                android:textColor="@color/grey_90" />
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="One Republic" />
-
-                                        </LinearLayout>
-
-                                        <ImageButton
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:background="?attr/selectableItemBackgroundBorderless"
-                                            android:tint="@color/grey_40"
-                                            app:srcCompat="@drawable/ic_more_vert" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
 
                         </LinearLayout>
 
@@ -203,7 +92,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Recommended"
+                                android:text="Top Song"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
                             <Button
@@ -224,104 +113,16 @@
                             android:padding="@dimen/spacing_medium"
                             android:visibility="visible">
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/spacing_medium"
-                                android:layout_weight="1"
-                                app:cardCornerRadius="2dp"
-                                app:cardElevation="2dp">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycle"
+                                android:clipToPadding="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#f0f0f0">
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
 
-                                    <ImageView
-                                        android:id="@+id/image_3"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="120dp"
-                                        android:background="@color/grey_40"
-                                        android:scaleType="centerCrop" />
+                            </androidx.recyclerview.widget.RecyclerView>
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:maxLines="1"
-                                        android:padding="@dimen/spacing_large"
-                                        android:singleLine="true"
-                                        android:text="Curabitur tempus"
-                                        android:textAppearance="@style/TextAppearance.Medium.Bold"
-                                        android:textColor="@color/grey_90" />
-
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/spacing_medium"
-                                android:layout_weight="1"
-                                app:cardCornerRadius="2dp"
-                                app:cardElevation="2dp">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:id="@+id/image_4"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="120dp"
-                                        android:background="@color/grey_40"
-                                        android:scaleType="centerCrop" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:maxLines="1"
-                                        android:padding="@dimen/spacing_large"
-                                        android:singleLine="true"
-                                        android:text="Quisque"
-                                        android:textAppearance="@style/TextAppearance.Medium.Bold"
-                                        android:textColor="@color/grey_90" />
-
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/spacing_medium"
-                                android:layout_weight="1"
-                                app:cardCornerRadius="2dp"
-                                app:cardElevation="2dp">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:id="@+id/image_5"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="120dp"
-                                        android:background="@color/grey_40"
-                                        android:scaleType="centerCrop" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:maxLines="1"
-                                        android:padding="@dimen/spacing_large"
-                                        android:singleLine="true"
-                                        android:text="Aliquam ac elit"
-                                        android:textAppearance="@style/TextAppearance.Medium.Bold"
-                                        android:textColor="@color/grey_90" />
-
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
 
                         </LinearLayout>
 
@@ -337,7 +138,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Top Rated"
+                                android:text="Top Pop"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
                             <Button
@@ -359,127 +160,18 @@
                             android:padding="@dimen/spacing_medium"
                             android:visibility="visible">
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/spacing_medium"
-                                android:layout_weight="1"
-                                app:cardCornerRadius="2dp"
-                                app:cardElevation="2dp">
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclesonggenre"
+                                android:clipToPadding="false"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#f0f0f0">
 
-                                    <ImageView
-                                        android:id="@+id/image_6"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="180dp"
-                                        android:background="@color/grey_40"
-                                        android:scaleType="centerCrop" />
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="@dimen/spacing_large">
+                            </androidx.recyclerview.widget.RecyclerView>
 
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:orientation="vertical">
 
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Suspendisse ornare"
-                                                android:textAppearance="@style/TextAppearance.Medium.Bold"
-                                                android:textColor="@color/grey_90" />
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="Adipiscing" />
-
-                                        </LinearLayout>
-
-                                        <ImageButton
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:background="?attr/selectableItemBackgroundBorderless"
-                                            android:tint="@color/grey_40"
-                                            app:srcCompat="@drawable/ic_more_vert" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/spacing_medium"
-                                android:layout_weight="1"
-                                app:cardCornerRadius="2dp"
-                                app:cardElevation="2dp">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:id="@+id/image_7"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="180dp"
-                                        android:background="@color/grey_40"
-                                        android:scaleType="centerCrop" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="@dimen/spacing_large">
-
-                                        <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Placerat vel ipsum"
-                                                android:textAppearance="@style/TextAppearance.Medium.Bold"
-                                                android:textColor="@color/grey_90" />
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:text="amet rutrum" />
-
-                                        </LinearLayout>
-
-                                        <ImageButton
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:background="?attr/selectableItemBackgroundBorderless"
-                                            android:tint="@color/grey_40"
-                                            app:srcCompat="@drawable/ic_more_vert" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
 
                         </LinearLayout>
 

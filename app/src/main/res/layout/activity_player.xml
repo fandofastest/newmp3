@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.PlayerActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="294dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/music_bg" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="15.5dp"
+                    android:layout_marginLeft="17.7dp"
+                    android:src="@drawable/backarrow"/>
+
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    app:civ_border_width="10dp"
+                    android:layout_marginTop="40dp"
+                    app:civ_border_color="#FFFFFF"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:src="@drawable/artist1" />
+
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+
+
+        <customfonts.MyTextView_Poppins_Medium
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4f4f4f"
+            android:textSize="23.3sp"
+            android:layout_marginBottom="-3dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Startboy"/>
+
+        <customfonts.MyTextView_Poppins_Medium
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#c9c9c9"
+            android:textSize="11.7sp"
+            android:text="The Weekend"/>
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="7dp"
+            android:minWidth="7dp"
+            android:maxHeight="7dp"
+            android:maxWidth="7dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:thumb="@drawable/custom_thunb"
+            android:progressDrawable="@drawable/seekbar_style"
+            android:splitTrack="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="50.3dp"
+            android:orientation="horizontal">
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="13.5sp"
+                android:paddingLeft="5dp"
+                android:textColor="#d9d6d6"
+                android:text="0:00"/>
+
+
+
+            <customfonts.MyTextView_Poppins_Regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13.5sp"
+                android:textColor="#d9d6d6"
+                android:text="3:52"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/shuffle"/>
+
+
+            </LinearLayout>
+            <ImageView
+                android:layout_width="22.5dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/backward"/>
+
+            <ImageView
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginRight="19dp"
+                android:src="@drawable/play2"/>
+
+            <ImageView
+                android:layout_width="22.5dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/forward"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/repeat"/>
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>
