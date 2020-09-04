@@ -10,10 +10,7 @@
 
 
 
-    <!-- search bar layout -->
-    <include
-        android:id="@+id/search_bar"
-        layout="@layout/include_card_view_search_bar" />
+
 
 
     <androidx.core.widget.NestedScrollView
@@ -22,6 +19,7 @@
         android:layout_height="match_parent"
         android:scrollbars="none"
         android:scrollingCache="true">
+
         <FrameLayout
             android:id="@+id/fl_container"
             android:layout_width="match_parent"

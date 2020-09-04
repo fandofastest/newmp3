@@ -27,9 +27,9 @@ public class Tools {
     public static String SERVERMUSIC="https://fando.id/soundcloud/get.php?id=";
 
 
-    public static void displayImageOriginal(Context ctx, ImageView img, @DrawableRes int drawable) {
+    public static void displayImageOriginal(Context ctx, ImageView img, String string) {
         try {
-            Glide.with(ctx).load(drawable)
+            Glide.with(ctx).load(string)
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(img);

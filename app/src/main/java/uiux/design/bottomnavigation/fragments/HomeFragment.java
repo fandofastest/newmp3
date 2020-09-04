@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -32,11 +31,12 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import uiux.design.bottomnavigation.R;
-import uiux.design.bottomnavigation.activities.PlayerActivity;
+import uiux.design.bottomnavigation.utils.PlayerActivity;
 import uiux.design.bottomnavigation.adapter.GenreAdapter;
 import uiux.design.bottomnavigation.adapter.MusicAdapter;
 import uiux.design.bottomnavigation.model.Genre;
 import uiux.design.bottomnavigation.model.Song;
+import uiux.design.bottomnavigation.utils.PlayerService;
 import uiux.design.bottomnavigation.utils.Tools;
 
 /**
@@ -122,6 +122,8 @@ public class HomeFragment extends Fragment {
             public void onItemClick(View view, int pos) {
                 Intent intent = new Intent(getContext(), PlayerActivity.class);
                 intent.putExtra("pos",pos);
+                intent.putExtra("from","online");
+                PlayerService.currentlist=listsong;
 
                 startActivity(intent);
             }
@@ -134,6 +136,19 @@ public class HomeFragment extends Fragment {
         recyclerViewtopgenre.setLayoutManager(mLayoutManagersonggenre);
         recyclerViewtopgenre.setItemAnimator(new DefaultItemAnimator());
         recyclerViewtopgenre.setAdapter(musicAdaptertopgenre);
+
+        musicAdaptertopgenre.setOnItemClickListener(new MusicAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int pos) {
+                Intent intent = new Intent(getContext(), PlayerActivity.class);
+                intent.putExtra("pos",pos);
+                intent.putExtra("from","online");
+                PlayerService.currentlist=listsong;
+
+                startActivity(intent);
+            }
+        });
+
 
 
         recyclerViewgenre=view.findViewById(R.id.recyclegenre);
@@ -176,7 +191,7 @@ public class HomeFragment extends Fragment {
                         JSONObject jsonObject1=jsonArray1.getJSONObject(i);
                         JSONObject jsonObject=jsonObject1.getJSONObject("track");
                         Song musicSongOnline = new Song();
-                        musicSongOnline.setId(jsonObject.getString("id"));
+                        musicSongOnline.setId(jsonObject.getInt("id"));
                         musicSongOnline.setJudul(jsonObject.getString("title"));
                         musicSongOnline.setLinkimage(jsonObject.getString("artwork_url"));
                         musicSongOnline.setDurasi(jsonObject.getString("full_duration"));
@@ -246,7 +261,7 @@ public class HomeFragment extends Fragment {
                         JSONObject jsonObject1=jsonArray1.getJSONObject(i);
                         JSONObject jsonObject=jsonObject1.getJSONObject("track");
                         Song musicSongOnline = new Song();
-                        musicSongOnline.setId(jsonObject.getString("id"));
+                        musicSongOnline.setId(jsonObject.getInt("id"));
                         musicSongOnline.setJudul(jsonObject.getString("title"));
                         musicSongOnline.setLinkimage(jsonObject.getString("artwork_url"));
                         musicSongOnline.setDurasi(jsonObject.getString("full_duration"));

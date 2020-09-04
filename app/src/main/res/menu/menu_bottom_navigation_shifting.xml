@@ -2,9 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_movie"
-        android:icon="@drawable/ic_movie"
-        android:title="Movie &amp; TV" />
+        android:id="@+id/navigation_discover"
+        android:icon="@drawable/ic_baseline_camera_24"
+        android:title="Discover" />
+
+    <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Search" />
 
     <item
         android:id="@+id/navigation_music"
@@ -12,13 +17,10 @@
         android:title="Music" />
 
     <item
-        android:id="@+id/navigation_books"
-        android:icon="@drawable/ic_book"
-        android:title="Books" />
+        android:id="@+id/navigation_local"
+        android:icon="@drawable/ic_baseline_folder_special_24"
+        android:title="Local" />
 
-    <item
-        android:id="@+id/navigation_newsstand"
-        android:icon="@drawable/ic_news"
-        android:title="Newsstand" />
+
 
 </menu>

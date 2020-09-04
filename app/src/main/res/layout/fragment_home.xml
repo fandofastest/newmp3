@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,13 +15,9 @@
                 android:descendantFocusability="blocksDescendants"
                 android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_marginBottom="@dimen/spacing_middle" />
 
-                <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+                <androidx.core.widget.NestedScrollView
                     android:id="@+id/nested_scroll_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -69,10 +66,10 @@
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recyclegenre"
-                                android:clipToPadding="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="#f0f0f0">
+                                android:background="#ffffff"
+                                android:clipToPadding="false">
 
 
                             </androidx.recyclerview.widget.RecyclerView>
@@ -115,10 +112,10 @@
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recycle"
-                                android:clipToPadding="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="#f0f0f0">
+                                android:background="#ffffff"
+                                android:clipToPadding="false">
 
 
                             </androidx.recyclerview.widget.RecyclerView>
@@ -162,11 +159,13 @@
 
 
                             <androidx.recyclerview.widget.RecyclerView
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
                                 android:id="@+id/recyclesonggenre"
                                 android:clipToPadding="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="#f0f0f0">
+                                android:background="#ffffff">
 
 
                             </androidx.recyclerview.widget.RecyclerView>

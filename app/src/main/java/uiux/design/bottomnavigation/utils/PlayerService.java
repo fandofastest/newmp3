@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -162,13 +163,14 @@ public class PlayerService extends Service {
 
     public void playsong(int pos){
         currentpos=pos;
+
         try {
 
             final Song musicSongOnline =currentlist.get(pos);
             currentartist=musicSongOnline.getPenyanyi();
             currenttitle=musicSongOnline.getJudul();
             currentimageurl=musicSongOnline.getLinkimage();
-
+            Log.e("xxx", currentimageurl);
 
 
 
@@ -262,7 +264,7 @@ public class PlayerService extends Service {
 
         }
         catch (Exception e){
-            System.out.println(e);
+           Log.e("eerr", String.valueOf(e));
         }
 
     }
