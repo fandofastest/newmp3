@@ -1,11 +1,13 @@
 package uiux.design.bottomnavigation.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,15 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
 
    private List<Genre> listgenre = new ArrayList<>();
    private Context ctx;
+    private OnItemClickListener mOnItemClickListener;
+    public interface OnItemClickListener {
+        void onItemClick(View view, Genre obj);
+    }
+
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
+        this.mOnItemClickListener = mItemClickListener;
+    }
+
     @NonNull
     @Override
     public GenreAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,6 +51,14 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
         holder.genre.setText(genre.getGenre());
         holder.imageView.setImageResource(R.drawable.genre);
         holder.genreshort.setText(genre.getGenre());
+        holder.mainly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(view, listgenre.get(position));
+                }
+            }
+        });
 
     }
 
@@ -50,12 +69,14 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
+        LinearLayout mainly;
         TextView genre,genreshort;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView=itemView.findViewById(R.id.image_genre);
             genre=itemView.findViewById(R.id.text_genre);
             genreshort=itemView.findViewById(R.id.shortgenre);
+            mainly=itemView.findViewById(R.id.mainlayout);
         }
     }
 }

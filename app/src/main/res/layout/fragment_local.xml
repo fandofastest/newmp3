@@ -6,10 +6,19 @@
     tools:context=".fragments.SearchFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="173dp"
+        android:background="@drawable/blue_bg">
+
+        <ImageView
+            android:layout_width="77dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="93dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_icon"/>
+
+    </FrameLayout>
+
 
 </LinearLayout>

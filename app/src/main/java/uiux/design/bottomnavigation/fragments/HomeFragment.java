@@ -31,6 +31,7 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import uiux.design.bottomnavigation.R;
+import uiux.design.bottomnavigation.activities.ListActivity;
 import uiux.design.bottomnavigation.utils.PlayerActivity;
 import uiux.design.bottomnavigation.adapter.GenreAdapter;
 import uiux.design.bottomnavigation.adapter.MusicAdapter;
@@ -157,6 +158,16 @@ public class HomeFragment extends Fragment {
         recyclerViewgenre.setLayoutManager(linearLayoutManager);
         recyclerViewgenre.setItemAnimator(new DefaultItemAnimator());
         recyclerViewgenre.setAdapter(genreAdapter);
+        genreAdapter.setOnItemClickListener(new GenreAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, Genre obj) {
+                Intent intent = new Intent(getContext(), ListActivity.class);
+                intent.putExtra("q",obj.getGenre());
+                intent.putExtra("from","genre");
+                startActivity(intent);
+            }
+        });
+
 
         // display image
 

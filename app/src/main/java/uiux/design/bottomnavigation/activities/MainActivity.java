@@ -68,14 +68,20 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_search:
                         navigation.setBackgroundColor(getResources().getColor(R.color.blue_800));
                         loadFragment(new SearchFragment());
+                        Tools.setSystemBarColor(MainActivity.this, R.color.blue_800);
+                        Tools.setSystemBarLight(MainActivity.this);
                         return true;
                     case R.id.navigation_music:
                         navigation.setBackgroundColor(getResources().getColor(R.color.pink_800));
                         loadFragment(new GenreFragment());
+                        Tools.setSystemBarColor(MainActivity.this, R.color.pink_800);
+                        Tools.setSystemBarLight(MainActivity.this);
                         return true;
                     case R.id.navigation_local:
                         navigation.setBackgroundColor(getResources().getColor(R.color.orange_800));
                         loadFragment(new LocalFragment());
+                        Tools.setSystemBarColor(MainActivity.this, R.color.orange_800);
+                        Tools.setSystemBarLight(MainActivity.this);
                         return true;
 
                 }
@@ -101,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Tools.setSystemBarColor(this, R.color.grey_5);
+        Tools.setSystemBarColor(this, R.color.green_800);
         Tools.setSystemBarLight(this);
     }
 

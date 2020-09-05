@@ -40,6 +40,7 @@
                             android:paddingRight="@dimen/spacing_large">
 
                             <TextView
+                                android:textColor="@color/white"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -47,13 +48,14 @@
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
                             <Button
+
                                 style="@style/Widget.AppCompat.Button.Borderless"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:minWidth="0dp"
                                 android:text="MORE"
-                                android:textColor="@color/grey_60" />
+                                android:textColor="@color/green_100" />
 
                         </LinearLayout>
 
