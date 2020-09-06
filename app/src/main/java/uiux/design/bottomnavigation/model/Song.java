@@ -12,25 +12,26 @@ public class Song extends RealmObject {
     private String durasi;
     private  String type;
     private  String linkimage;
-    private  String Inplaylists,Recent;
+    private  String inplaylists;
+    private  String recent;
 
     public Song() {
     }
 
     public String getInplaylists() {
-        return Inplaylists;
+        return inplaylists;
     }
 
     public void setInplaylists(String inplaylists) {
-        Inplaylists = inplaylists;
+        this.inplaylists = inplaylists;
     }
 
     public String getRecent() {
-        return Recent;
+        return recent;
     }
 
     public void setRecent(String recent) {
-        Recent = recent;
+        this.recent = recent;
     }
 
     public String getType() {

@@ -38,6 +38,18 @@ public class Tools {
         }
     }
 
+    public static void displayImageOriginallocal(Context ctx, ImageView img, int draw) {
+        try {
+            Glide.with(ctx).load(draw)
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(img);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void setSystemBarColor(Activity act) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = act.getWindow();

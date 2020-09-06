@@ -1,8 +1,10 @@
 package uiux.design.bottomnavigation.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,12 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,8 +36,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import uiux.design.bottomnavigation.BuildConfig;
 import uiux.design.bottomnavigation.R;
 import uiux.design.bottomnavigation.activities.ListActivity;
+import uiux.design.bottomnavigation.activities.MainActivity;
 import uiux.design.bottomnavigation.utils.PlayerActivity;
 import uiux.design.bottomnavigation.adapter.GenreAdapter;
 import uiux.design.bottomnavigation.adapter.MusicAdapter;
@@ -51,6 +59,10 @@ public class HomeFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private BottomSheetBehavior mBehavior;
+    private BottomSheetDialog mBottomSheetDialog;
+    private View bottom_sheet;
+
 
     private SweetAlertDialog pDialog;
 
@@ -108,6 +120,11 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
+        bottom_sheet =view.findViewById(R.id.bottom_sheet);
+        mBehavior = BottomSheetBehavior.from(bottom_sheet);
+
         pDialog = new SweetAlertDialog(ctx, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Loading");
@@ -124,9 +141,10 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getContext(), PlayerActivity.class);
                 intent.putExtra("pos",pos);
                 intent.putExtra("from","online");
+                Song song= listsong.get(pos);
                 PlayerService.currentlist=listsong;
+                showitemdialog(intent,song);
 
-                startActivity(intent);
             }
         });
 
@@ -145,8 +163,9 @@ public class HomeFragment extends Fragment {
                 intent.putExtra("pos",pos);
                 intent.putExtra("from","online");
                 PlayerService.currentlist=listsong;
+                Song song =listtopgenre.get(pos);
+                showitemdialog(intent,song);
 
-                startActivity(intent);
             }
         });
 
@@ -177,6 +196,89 @@ public class HomeFragment extends Fragment {
         gettopgenre("pop");
 
 
+
+    }
+    private void showitemdialog(Intent intent, Song song) {
+
+        if (mBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
+
+        final View view = getLayoutInflater().inflate(R.layout.buttomnav, null);
+
+        mBottomSheetDialog = new BottomSheetDialog(ctx);
+        mBottomSheetDialog.setContentView(view);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mBottomSheetDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+
+        // set background transparent
+        ((View) view.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+        final TextView btnShare = view.findViewById(R.id.btnShare);
+        final TextView btnDl    = view.findViewById(R.id.btnDl);
+        final TextView btnPlay = view.findViewById(R.id.btnPlay);
+        final TextView btnAddpl = view.findViewById(R.id.btnAddpl);
+        final TextView btnCancel = view.findViewById(R.id.btnCancel);
+
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                    String shareMessage= "\nLet me recommend you this application\n\n";
+                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                    startActivity(Intent.createChooser(shareIntent, "choose one"));
+                } catch(Exception e) {
+                    //e.toString();
+                }
+                mBottomSheetDialog.dismiss();
+
+            }
+        });
+
+        btnDl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mBottomSheetDialog.dismiss();
+            }
+        });
+
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
+                mBottomSheetDialog.dismiss();
+            }
+        });
+        btnAddpl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ctx instanceof MainActivity) {
+                    ((MainActivity)ctx).addtoplaylits(song);
+                }
+
+                mBottomSheetDialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mBottomSheetDialog.dismiss();
+            }
+        });
+
+        mBottomSheetDialog.show();
+        mBottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mBottomSheetDialog = null;
+            }
+        });
 
     }
 

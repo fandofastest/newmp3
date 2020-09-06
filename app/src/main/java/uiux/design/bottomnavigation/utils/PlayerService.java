@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -22,19 +23,23 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import uiux.design.bottomnavigation.model.Song;
+import uiux.design.bottomnavigation.model.SongOffline;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class PlayerService extends Service {
-//    public static List<MusicSongOffline> listlocal = new ArrayList<>();
+    public static List<SongOffline> listlocal = new ArrayList<>();
     public static List<Song> listtopsong = new ArrayList<>();
     public static List<Song> listrecent = new ArrayList<>();
     public static List<Song> listplaylist = new ArrayList<>();
     public static List<Song> currentlist = new ArrayList<>();
-//    public static List<MusicSongOffline> currentlistoffline = new ArrayList<>();
+    public static List<SongOffline> currentlistoffline = new ArrayList<>();
     public  static String PLAYERSTATUS="STOP",REPEAT="OFF",SHUFFLE="OFF",CURRENTTYPE="OFF";
     public static int totalduration,currentduraiton,currentpos;
     String from;
     public static String currenttitle,currentartist,currentimageurl;
     Realm realm;
+    RealmHelper realmHelper;
     public  static int sessionId;
 
     //player
@@ -76,6 +81,10 @@ public class PlayerService extends Service {
                 }
                 else if (status.equals("next")){
                     if (CURRENTTYPE.equals("ON")){
+                        if (currentlist.size()==currentpos+1){
+                            currentpos=-1;
+                        }
+
                         playsong(currentpos+1);
                     }
 
@@ -88,6 +97,11 @@ public class PlayerService extends Service {
                 else if (status.equals("prev")){
 
                     if (CURRENTTYPE.equals("ON")){
+                        if (currentpos==0){
+                            Log.e("eerrr", String.valueOf(currentlist.size()));
+                            currentpos=currentlist.size();
+                        }
+
                         playsong(currentpos-1);
                     }
 
@@ -119,13 +133,13 @@ public class PlayerService extends Service {
 
 
 
+
             }
         }, new IntentFilter("musicplayer"));
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         initrealm();
         from=intent.getStringExtra("from");
 
@@ -136,7 +150,7 @@ public class PlayerService extends Service {
 
         }
         else if (from.equals("offline")){
-//            playsongoff(intent.getIntExtra("pos",0));
+            playsongoff(intent.getIntExtra("pos",0));
             CURRENTTYPE="OFF";
 
         }
@@ -148,12 +162,14 @@ public class PlayerService extends Service {
 
         return START_STICKY;
     }
+
     public void  initrealm(){
         Realm.init(PlayerService.this);
         RealmConfiguration configuration = new RealmConfiguration.Builder().build();
         realm = Realm.getInstance(configuration);
 
     }
+
 
     @Nullable
     @Override
@@ -165,6 +181,8 @@ public class PlayerService extends Service {
         currentpos=pos;
 
         try {
+
+
 
             final Song musicSongOnline =currentlist.get(pos);
             currentartist=musicSongOnline.getPenyanyi();
@@ -270,111 +288,111 @@ public class PlayerService extends Service {
     }
 
 
-//    public void playsongoff(int pos){
-//        currentpos=pos;
-//        try {
-//
-//            final MusicSongOffline musicSongOffline = currentlistoffline.get(pos);
-//            currentartist="Local";
-//            currenttitle=musicSongOffline.getFilename();
-//            currentimageurl="";
-//
-//
-//
-//
-//            mp.stop();
-//            mp.reset();
-//            mp.release();
-//
-//
-//
-//            Uri myUri = Uri.parse(musicSongOffline.getFilepath());
-//            mp = new MediaPlayer();
-//            mp.setDataSource(this, myUri);
-//            mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
-////            mp.prepareAsync(); //don't use prepareAsync for mp3 playback
-//
-//            mp.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-//                @Override
-//                public boolean onError(MediaPlayer mp, int what, int extra) {
-//
-//                    return true;
-//                }
-//            });
-//
-//
-//            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//                @Override
-//                public void onCompletion(MediaPlayer mp1) {
-//
-//                    if (REPEAT.equals("ON")){
-//                        playsongoff(currentpos);
-//                    }
-//                    else if (SHUFFLE.equals("ON")){
-//
-//                        int pos= (int) (Math.random() * (listlocal.size()));
-//
-//                        playsongoff(pos);
-//                    }
-//                    else {
-//
-//                        playsongoff(currentpos+1);
-//                    }
-//
-//
-//
-//
-//
-//
-//                }
-//
-//
-//
-//            });
-//
-//
-//
-//            mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//                @SuppressLint("RestrictedApi")
-//                @Override
-//                public void onPrepared(MediaPlayer mplayer) {
-//
-//
-//
-//                    sessionId=mp.getAudioSessionId();
-//
-//                    if (mplayer.isPlaying()) {
-//                        mp.pause();
-//
-//                    } else {
-//                        mp.start();
-//                        PLAYERSTATUS="PLAYING";
-//                        Intent intent = new Intent("musicplayer");
-//                        intent.putExtra("status", "playing");
-//                        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
-//
-//
-//
-//                    }
-//
-//                }
-//
-//
-//            });
-//
-//
-//
-//
-//
-//            mp.prepareAsync();
-//
-//
-//        }
-//        catch (Exception e){
-//            System.out.println(e);
-//        }
-//
-//    }
+    public void playsongoff(int pos){
+        currentpos=pos;
+        try {
+
+            final SongOffline musicSongOffline = currentlistoffline.get(pos);
+            currentartist="Local";
+            currenttitle=musicSongOffline.getFilename();
+            currentimageurl="";
+
+
+
+
+            mp.stop();
+            mp.reset();
+            mp.release();
+
+
+
+            Uri myUri = Uri.parse(musicSongOffline.getFilepath());
+            mp = new MediaPlayer();
+            mp.setDataSource(this, myUri);
+            mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//            mp.prepareAsync(); //don't use prepareAsync for mp3 playback
+
+            mp.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mp, int what, int extra) {
+
+                    return true;
+                }
+            });
+
+
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp1) {
+
+                    if (REPEAT.equals("ON")){
+                        playsongoff(currentpos);
+                    }
+                    else if (SHUFFLE.equals("ON")){
+
+                        int pos= (int) (Math.random() * (listlocal.size()));
+
+                        playsongoff(pos);
+                    }
+                    else {
+
+                        playsongoff(currentpos+1);
+                    }
+
+
+
+
+
+
+                }
+
+
+
+            });
+
+
+
+            mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @SuppressLint("RestrictedApi")
+                @Override
+                public void onPrepared(MediaPlayer mplayer) {
+
+
+
+                    sessionId=mp.getAudioSessionId();
+
+                    if (mplayer.isPlaying()) {
+                        mp.pause();
+
+                    } else {
+                        mp.start();
+                        PLAYERSTATUS="PLAYING";
+                        Intent intent = new Intent("musicplayer");
+                        intent.putExtra("status", "playing");
+                        LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+
+
+
+                    }
+
+                }
+
+
+            });
+
+
+
+
+
+            mp.prepareAsync();
+
+
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
 
 
 }

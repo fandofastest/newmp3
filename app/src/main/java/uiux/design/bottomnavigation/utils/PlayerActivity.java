@@ -17,7 +17,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,17 +30,25 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import uiux.design.bottomnavigation.R;
 import uiux.design.bottomnavigation.activities.MusicUtils;
+import uiux.design.bottomnavigation.model.Song;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class PlayerActivity extends  AppCompatActivity implements View.OnClickListener {
 
     private View parent_view;
     private ImageView bt_play;
-    private ProgressBar song_progressbar,progressBarplay;
+    private ProgressBar progressBarplay;
     TextView title,artist,totaldura,currendura;
     ImageView repeat,shuffle,nextbt,prevbt;
     ImageView imageView;
+    SeekBar seekBar;
+
+
 
 
     // Handler to update UI timer, progress bar etc,.
@@ -56,6 +66,8 @@ public class PlayerActivity extends  AppCompatActivity implements View.OnClickLi
         initComponent();
         from=getIntent().getStringExtra("from");
         parent_view=findViewById(R.id.parent);
+
+
 
 
 
@@ -103,9 +115,11 @@ public class PlayerActivity extends  AppCompatActivity implements View.OnClickLi
 
 
 
+
     private void initComponent() {
 
         bt_play = findViewById(R.id.playbutton);
+        seekBar = findViewById(R.id.seekbar);
 
         shuffle=findViewById(R.id.shuffle);
         repeat=findViewById(R.id.repeat);
@@ -116,6 +130,39 @@ public class PlayerActivity extends  AppCompatActivity implements View.OnClickLi
         repeat.setOnClickListener(this);
         nextbt.setOnClickListener(this);
         prevbt.setOnClickListener(this);
+
+        // set Progress bar values
+        seekBar.setProgress(0);
+
+        seekBar.setMax(MusicUtils.MAX_PROGRESS);
+
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar1, int progress, boolean b) {
+
+                if(b){
+
+                    seekBar.setProgress(progress);
+                    updateseekbarmp(progress);
+
+                }
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //must needed for seekbar
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //must needed for seekbar
+
+            }
+
+
+        });
 
 
 
@@ -135,14 +182,12 @@ public class PlayerActivity extends  AppCompatActivity implements View.OnClickLi
         if (PlayerService.REPEAT.equals("OFF")){
             repeat.setColorFilter(R.color.grey_700);
         }
-        song_progressbar = (ProgressBar) findViewById(R.id.progressplay);
         title=findViewById(R.id.title);
         artist=findViewById(R.id.artist);
         progressBarplay=findViewById(R.id.progressplay);
 
         // set Progress bar values
-        song_progressbar.setProgress(0);
-        song_progressbar.setMax(MusicUtils.MAX_PROGRESS);
+
 
 
 
@@ -150,7 +195,23 @@ public class PlayerActivity extends  AppCompatActivity implements View.OnClickLi
 
         buttonPlayerAction();
     }
+    public void  updateseekbarmp(int progress){
 
+        double currentseek = ((double) progress/(double)MusicUtils.MAX_PROGRESS);
+
+        int totaldura= PlayerService.totalduration;
+        int seek= (int) (totaldura*currentseek);
+
+        Intent intent = new Intent("musicplayer");
+        intent.putExtra("status", "seek");
+        intent.putExtra("seektime",seek);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+
+
+
+
+    }
     /**
      * Play button click event plays a song and changes button to pause image
      * pauses a song and changes button to play image
@@ -208,7 +269,7 @@ public class PlayerActivity extends  AppCompatActivity implements View.OnClickLi
         totaldura.setText(utils.milliSecondsToTimer(PlayerService.totalduration));
         // Updating progress bar
         int progress = (int) (utils.getProgressSeekBar(PlayerService.currentduraiton, PlayerService.totalduration));
-        song_progressbar.setProgress(progress);
+        seekBar.setProgress(progress);
     }
 
     // stop player when destroy
@@ -332,6 +393,7 @@ public class PlayerActivity extends  AppCompatActivity implements View.OnClickLi
         mHandler.post(mUpdateTimeTask);
 
     }
+
 
     @Override
     public void onClick(View view) {
