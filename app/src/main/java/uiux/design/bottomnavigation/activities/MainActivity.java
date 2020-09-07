@@ -4,12 +4,15 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,13 +27,18 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
+import guy4444.smartrate.SmartRate;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+import pub.devrel.easypermissions.PermissionRequest;
 import uiux.design.bottomnavigation.fragments.PlaylistsFragment;
 import uiux.design.bottomnavigation.R;
 import uiux.design.bottomnavigation.fragments.HomeFragment;
@@ -57,24 +65,20 @@ public class MainActivity extends AppCompatActivity {
         Realm realm;
         RealmHelper realmHelper;
         private  MusicUtils utils;
+        final int  RC_CAMERA_AND_LOCATION=1111;
 
 
-        @Override
+
+    @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             parent_view = findViewById(R.id.container);
             utils= new MusicUtils();
-
+            methodRequiresTwoPermission();
             initComponent();
             initrealm();
             buttonPlayerAction();
-
-            if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)&& (!Settings.System.canWrite(this))) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE}, 2909);
-
-            }
 
 
             if (PlayerService.PLAYERSTATUS.equals("PLAYING")){
@@ -89,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            loadFragment(new HomeFragment());
+
 
         }
 
@@ -347,6 +351,78 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    public void  exitdialog(){
+        CFAlertDialog.Builder builder = new CFAlertDialog.Builder(this)
+                .setDialogStyle(CFAlertDialog.CFAlertStyle.ALERT)
+                .setTitle("Quit App")
+                .setMessage("Are you sure?")
+
+                .addButton("Sure", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.END, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.exit(0);
+                        finishAffinity();
+                        finish();
+
+                    }
+                })
+                .addButton("Rate App", -1, -1, CFAlertDialog.CFAlertActionStyle.DEFAULT, CFAlertDialog.CFAlertActionAlignment.END, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        showRate();
+
+                    }
+                });
+
+// Show the alert
+        builder.show();
+    }
+    public void showRate(){
+
+        SmartRate.Rate(MainActivity.this
+                , "Rate Us"
+                , "Tell others what you think about this app"
+                , "Continue"
+                , "Please take a moment and rate us on Google Play"
+                , "click here"
+                , "Cancel"
+                , "Thanks for the feedback"
+                , Color.parseColor("#2196F3")
+                , 4
+        );
+
+    }
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        exitdialog();
+
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        loadFragment(new HomeFragment());
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @AfterPermissionGranted(RC_CAMERA_AND_LOCATION)
+    private void methodRequiresTwoPermission() {
+        String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            // Already have permission, do the thing
+            loadFragment(new HomeFragment());
+            // ...
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, "Request",
+                    RC_CAMERA_AND_LOCATION, perms);
+        }
     }
 
 

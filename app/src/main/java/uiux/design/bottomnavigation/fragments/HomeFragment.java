@@ -40,6 +40,9 @@ import uiux.design.bottomnavigation.BuildConfig;
 import uiux.design.bottomnavigation.R;
 import uiux.design.bottomnavigation.activities.ListActivity;
 import uiux.design.bottomnavigation.activities.MainActivity;
+import uiux.design.bottomnavigation.activities.SplashActivity;
+import uiux.design.bottomnavigation.utils.Ads;
+import uiux.design.bottomnavigation.utils.Constants;
 import uiux.design.bottomnavigation.utils.PlayerActivity;
 import uiux.design.bottomnavigation.adapter.GenreAdapter;
 import uiux.design.bottomnavigation.adapter.MusicAdapter;
@@ -183,7 +186,21 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getContext(), ListActivity.class);
                 intent.putExtra("q",obj.getGenre());
                 intent.putExtra("from","genre");
-                startActivity(intent);
+                Ads ads = new Ads();
+                ads.dualadsinter(ctx, Constants.getInter(),Constants.getInterfan());
+                ads.setCustomObjectListener(new Ads.MyCustomObjectListener() {
+                    @Override
+                    public void onAdsfinish() {
+
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onRewardOk() {
+
+                    }
+                });
             }
         });
 
@@ -250,7 +267,22 @@ public class HomeFragment extends Fragment {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(intent);
+                Ads ads = new Ads();
+                ads.dualadsinter(ctx, Constants.getInter(),Constants.getInterfan());
+                ads.setCustomObjectListener(new Ads.MyCustomObjectListener() {
+                    @Override
+                    public void onAdsfinish() {
+
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onRewardOk() {
+
+                    }
+                });
+
                 mBottomSheetDialog.dismiss();
             }
         });

@@ -22,6 +22,9 @@
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +34,9 @@
         <activity android:name=".utils.PlayerActivity" />
 
         <service android:name=".utils.PlayerService" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
     </application>
 
 </manifest>

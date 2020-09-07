@@ -38,6 +38,14 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'             // image loader
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.facebook.android:audience-network-sdk:5.11.0'
+    implementation 'com.google.android.gms:play-services-ads:19.3.0'
+    implementation 'com.kaopiz:kprogresshud:1.0.2'
+    implementation 'com.crowdfire.cfalertdialog:cfalertdialog:1.1.0'
+    implementation 'com.github.guy-4444:SmartRateUsDialog-Android:1.00.08'
+
+
 
 
 }

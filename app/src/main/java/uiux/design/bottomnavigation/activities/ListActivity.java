@@ -37,6 +37,8 @@ import uiux.design.bottomnavigation.BuildConfig;
 import uiux.design.bottomnavigation.R;
 import uiux.design.bottomnavigation.adapter.MusicAdapter;
 import uiux.design.bottomnavigation.model.Song;
+import uiux.design.bottomnavigation.utils.Ads;
+import uiux.design.bottomnavigation.utils.Constants;
 import uiux.design.bottomnavigation.utils.PlayerActivity;
 import uiux.design.bottomnavigation.utils.PlayerService;
 import uiux.design.bottomnavigation.utils.RealmHelper;
@@ -257,7 +259,21 @@ public class ListActivity extends AppCompatActivity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(intent);
+                Ads ads = new Ads();
+                ads.dualadsinter(ListActivity.this, Constants.getInter(),Constants.getInterfan());
+                ads.setCustomObjectListener(new Ads.MyCustomObjectListener() {
+                    @Override
+                    public void onAdsfinish() {
+
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onRewardOk() {
+
+                    }
+                });
                 mBottomSheetDialog.dismiss();
             }
         });
