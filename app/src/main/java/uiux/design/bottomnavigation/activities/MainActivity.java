@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         Realm realm;
         RealmHelper realmHelper;
         private  MusicUtils utils;
-        final int  RC_CAMERA_AND_LOCATION=1111;
+        final int  PERMISSION_CODE=1111;
 
 
 
@@ -411,7 +411,7 @@ public class MainActivity extends AppCompatActivity {
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
-    @AfterPermissionGranted(RC_CAMERA_AND_LOCATION)
+    @AfterPermissionGranted(PERMISSION_CODE)
     private void methodRequiresTwoPermission() {
         String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         if (EasyPermissions.hasPermissions(this, perms)) {
@@ -421,7 +421,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // Do not have permissions, request them now
             EasyPermissions.requestPermissions(this, "Request",
-                    RC_CAMERA_AND_LOCATION, perms);
+                    PERMISSION_CODE, perms);
         }
     }
 
