@@ -315,7 +315,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void gettopgenre (String genre){
-        String url="https://api-v2.soundcloud.com/charts?genre=soundcloud:genres:"+genre+"&high_tier_only=false&kind=trending&limit=100&&client_id="+Tools.key;
+        String url="https://api-v2.soundcloud.com/charts?genre=soundcloud:genres:"+genre+"&high_tier_only=false&kind=trending&limit=100&&client_id="+Constants.getKey();
 
         pDialog.show();
         recyclerViewtopgenre.setVisibility(View.VISIBLE);
@@ -385,7 +385,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void gettopsong (){
-        String url="https://api-v2.soundcloud.com/charts?charts-top:all-music&&high_tier_only=false&kind=top&limit=100&client_id="+Tools.key;
+        String url="https://api-v2.soundcloud.com/charts?charts-top:all-music&&high_tier_only=false&kind=top&limit=100&client_id="+Constants.getKey();
 
         pDialog.show();
         recyclerView.setVisibility(View.VISIBLE);

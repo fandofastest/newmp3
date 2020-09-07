@@ -109,18 +109,22 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    public void getsongs(final String q, final String type){
+    public void getsongs( String q, final String type){
         pDialog.show();
         listsong.clear();
         recyclerView.removeAllViews();
         String url;
         if (type.equals("genre")){
-            url="https://api-v2.soundcloud.com/charts?genre=soundcloud:genres:"+q+"&high_tier_only=false&kind=top&limit=100&client_id="+ Tools.key;
+            q=q.replaceAll("\\s+","");
+            q=q.replaceAll("[-+^&]*", "");
+
+            url="https://api-v2.soundcloud.com/charts?genre=soundcloud:genres:"+q+"&high_tier_only=false&kind=top&limit=100&client_id="+ Constants.getKey();
         }
         else{
-            url="https://api-v2.soundcloud.com/search/tracks?q="+q+"&client_id="+Tools.key+"&limit=100";
+            url="https://api-v2.soundcloud.com/search/tracks?q="+q+"&client_id="+Constants.getKey()+"&limit=100";
 
         }
+        String finalQ = q;
         final JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -140,7 +144,7 @@ public class ListActivity extends AppCompatActivity {
                             listModalClass.setLinkimage(jsonObject.getString("artwork_url"));
                             listModalClass.setDurasi(jsonObject.getString("full_duration"));
                             listModalClass.setType("online");
-                            listModalClass.setPenyanyi(q);
+                            listModalClass.setPenyanyi(finalQ);
                             listsong.add(listModalClass);
 
                         }

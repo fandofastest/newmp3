@@ -22,9 +22,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import uiux.design.bottomnavigation.R;
 
 public class Tools {
-    public  static String key ="iZIs9mchVcX5lhVRyQGGAYlNPVldzAoX";
- public static    String URL="https://musicpedia.xyz/api/search.php?q=";
-    public static String SERVERMUSIC="https://fando.id/soundcloud/get.php?id=";
 
 
     public static void displayImageOriginal(Context ctx, ImageView img, String string) {

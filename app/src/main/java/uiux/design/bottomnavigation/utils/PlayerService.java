@@ -198,7 +198,7 @@ public class PlayerService extends Service {
 
 
 
-            Uri myUri = Uri.parse(Tools.SERVERMUSIC+musicSongOnline.getId());
+            Uri myUri = Uri.parse(Constants.getServerurl()+musicSongOnline.getId());
             mp = new MediaPlayer();
             mp.setDataSource(this, myUri);
             mp.setAudioStreamType(AudioManager.STREAM_MUSIC);

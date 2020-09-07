@@ -18,7 +18,7 @@ public class Constants {
     static String status="status";
     static String serverurl="https://fando.id/soundcloud/get.php?id=";//dont change
     static String downloaddir="/Downloads";
-    static String urlstatus="https://fando.id/simplemusic/newapp.php";
+    static String urlstatus="https://app.numpang.link/newapp.php";
     static String querysearch;
 
 

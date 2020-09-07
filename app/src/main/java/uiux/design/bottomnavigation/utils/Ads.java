@@ -52,11 +52,12 @@ public class Ads  {
         if (Constants.getAds().equals("admob")){
             showinter(context,admob);
         }
-        else {
+        else if (Constants.getAds().equals("fan")) {
             showinterfb(context,fan);
-
         }
+
     }
+
 
 
     public void showreward(Context context, String rewardads){
