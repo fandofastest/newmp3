@@ -15,16 +15,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="173dp"
-            android:background="@drawable/blue_bg">
-
-            <ImageView
-                android:layout_width="77dp"
-                android:layout_height="77dp"
-                android:layout_marginTop="93dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_icon"/>
-
-        </FrameLayout>
+            android:background="@drawable/ic_blue_bg"/>
 
 
         <RelativeLayout

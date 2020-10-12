@@ -10,14 +10,22 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="173dp"
-        android:background="@drawable/blue_bg">
-
+        android:background="@drawable/ic_blue_bg">
+        <TextView
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="20sp"
+            android:textSize="26sp"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOCAL MUSIC"/>
         <ImageView
-            android:layout_width="77dp"
-            android:layout_height="77dp"
-            android:layout_marginTop="93dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_icon"/>
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="50sp"
+            android:layout_gravity="right"
+            android:src="@drawable/circle"/>
 
     </FrameLayout>
 

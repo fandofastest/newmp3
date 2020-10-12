@@ -14,29 +14,10 @@
         <item name="android:dialogTheme">@style/Dialog.Theme</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Dialog.Theme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="EditText.Grey" parent="@style/AppTheme">
-        <item name="colorControlActivated">@color/grey_60</item>
-        <item name="colorControlHighlight">@color/grey_60</item>
-        <item name="colorControlNormal">@color/grey_40</item>
-    </style>
-
-    <style name="EditText.GreySoft" parent="@style/AppTheme">
-        <item name="colorControlActivated">@color/grey_40</item>
-        <item name="colorControlHighlight">@color/grey_40</item>
-        <item name="colorControlNormal">@color/grey_20</item>
-    </style>
-
-    <style name="Toolbar.Light" parent="@style/AppTheme">
-        <item name="colorControlNormal">@color/grey_60</item>
-        <item name="android:textColorPrimary">@color/grey_60</item>
     </style>
 
     <style name="TextAppearance.Medium.Bold" parent="@style/TextAppearance.AppCompat.Medium">

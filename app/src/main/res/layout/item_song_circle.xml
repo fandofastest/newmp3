@@ -22,7 +22,7 @@
             android:layout_width="31.3dp"
             android:layout_height="31.3dp"
             android:layout_marginLeft="14.3dp"
-            android:src="@drawable/ic_icon"/>
+            android:src="@drawable/artist1"/>
 
         <LinearLayout
             android:layout_width="0dp"
