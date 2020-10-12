@@ -19,7 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.musicapp.tubidyapp.R;
+import net.bukatutup.app.R;
 import net.bukatutup.app.activities.MainActivity;
 import net.bukatutup.app.adapter.MusicOfflineAdapter;
 import net.bukatutup.app.model.SongOffline;

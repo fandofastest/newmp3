@@ -22,7 +22,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import com.musicapp.tubidyapp.R;
+import net.bukatutup.app.R;
 import net.bukatutup.app.activities.MusicUtils;
 
 public class PlayerActivity extends  AppCompatActivity implements View.OnClickListener {

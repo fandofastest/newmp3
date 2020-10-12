@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#eee6f5"
     android:id="@+id/splashLayout"
     tools:context="net.bukatutup.app.activities.SplashActivity">
 
     <ImageView
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:src="@drawable/transparent"
+        android:src="@drawable/icon"
         android:layout_centerInParent="true" />
 
 </RelativeLayout>

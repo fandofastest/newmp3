@@ -36,8 +36,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+
 import net.bukatutup.app.BuildConfig;
-import com.musicapp.tubidyapp.R;
+import net.bukatutup.app.R;
 import net.bukatutup.app.activities.ListActivity;
 import net.bukatutup.app.activities.MainActivity;
 import net.bukatutup.app.utils.Ads;

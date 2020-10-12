@@ -37,8 +37,8 @@ import io.realm.RealmConfiguration;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
+import net.bukatutup.app.R;
 import net.bukatutup.app.fragments.PlaylistsFragment;
-import com.musicapp.tubidyapp.R;
 import net.bukatutup.app.fragments.HomeFragment;
 import net.bukatutup.app.fragments.LocalFragment;
 import net.bukatutup.app.fragments.SearchFragment;

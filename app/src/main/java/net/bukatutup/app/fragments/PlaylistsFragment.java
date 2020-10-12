@@ -23,7 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import net.bukatutup.app.BuildConfig;
-import com.musicapp.tubidyapp.R;
+import net.bukatutup.app.R;
 import net.bukatutup.app.activities.MainActivity;
 import net.bukatutup.app.adapter.MusicAdapter;
 import net.bukatutup.app.model.Song;

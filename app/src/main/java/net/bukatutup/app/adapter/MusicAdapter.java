@@ -17,7 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import com.musicapp.tubidyapp.R;
+
+import net.bukatutup.app.R;
 import net.bukatutup.app.model.Song;
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> {

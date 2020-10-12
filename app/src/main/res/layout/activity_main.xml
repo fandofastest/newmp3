@@ -16,7 +16,7 @@
             android:layout_height="120dp"
             android:layout_marginTop="33dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/circle"/>
+            android:src="@drawable/icon"/>
 
     </FrameLayout>
 

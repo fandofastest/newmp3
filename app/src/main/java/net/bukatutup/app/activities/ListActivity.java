@@ -33,8 +33,9 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+
 import net.bukatutup.app.BuildConfig;
-import com.musicapp.tubidyapp.R;
+import net.bukatutup.app.R;
 import net.bukatutup.app.adapter.MusicAdapter;
 import net.bukatutup.app.model.Song;
 import net.bukatutup.app.utils.Ads;
