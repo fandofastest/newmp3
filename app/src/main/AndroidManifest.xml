@@ -18,22 +18,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.musicapp.tubidyapp.activities.ListActivity"></activity>
+        <activity android:name="com.musicapp.tubidyapp.net.musicapp.tubidyapp.activities.ListActivity"></activity>
         <activity
-            android:name="com.musicapp.tubidyapp.activities.MainActivity"
+            android:name="com.musicapp.tubidyapp.net.musicapp.tubidyapp.activities.MainActivity"
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name="com.musicapp.tubidyapp.activities.SplashActivity">
+        <activity android:name="com.musicapp.tubidyapp.net.musicapp.tubidyapp.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.musicapp.tubidyapp.utils.PlayerActivity" />
+        <activity android:name="com.musicapp.tubidyapp.net.musicapp.tubidyapp.utils.PlayerActivity" />
 
-        <service android:name="com.musicapp.tubidyapp.utils.PlayerService" />
+        <service android:name="com.musicapp.tubidyapp.net.musicapp.tubidyapp.utils.PlayerService" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
